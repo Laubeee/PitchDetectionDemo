@@ -28,8 +28,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -40,9 +40,9 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -56,4 +56,22 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // TensorFlow Lite
+    implementation(libs.tensorflow.lite) // Check for the latest version
+    // TensorFlow Lite GPU delegate (optional, for GPU acceleration)
+    implementation(libs.tensorflow.lite.gpu.delegate.plugin) // Or the version matching your TFLite version
+    implementation(libs.tensorflow.lite.gpu)
+    // TensorFlow Lite NNAPI delegate (optional, for NPU acceleration)
+    implementation(libs.tensorflow.lite.support) // Provides NNAPI delegate support utilities
+
+    // For Audio processing (TensorFlow Lite Audio Task Library can be helpful)
+    implementation(libs.tensorflow.lite.task.audio) // Check for the latest version
+
+    // Other standard AndroidX libraries
+    implementation(libs.androidx.core.ktx.v1120)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout) // If using ConstraintLayout with XML
+    // ...
 }
